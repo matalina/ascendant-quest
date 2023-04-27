@@ -1,27 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        {% include "head.njk" %}
-        {% if site.env %}
-            <!-- Capture the CSS content as a Nunjucks variable -->
-            {% set css %}{% include "styles.min.css" %}{% endset %}
-            <style>
-                {{css | safe}}
-            </style>
-        {% else %}
-            <link rel="stylesheet" href="/static/styles.min.css">
-        {% endif %}
+<html lang="en" class="h-full">
+  <head>
+    {% include "head.njk" %}
 
-        <!-- Try and serve Google Fonts in the most efficent way possible -->
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
-        <noscript>
-            <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet" type="text/css"/>
-        </noscript>
-    </head>
-    <body>
-        <a href="#main" class="skip-link">Skip to main content</a>
-        {{ content | safe }}
-    </body>
-    <script src="/static/app.min.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/872835407e.js" crossorigin="anonymous"></script>
+    {% if site.env %}
+      <!-- Capture the CSS content as a Nunjucks variable -->
+      {% set css %}{% include "styles.min.css" %}{% endset %}
+      <style>
+        {{css | safe}}
+      </style>
+    {% else %}
+      <link rel="stylesheet" href="/static/styles.min.css">
+    {% endif %}
+  </head>
+  <body class="flex flex-col justify-between h-full">
+    {% include "header.njk" %}
+    {{ content | safe }}
+    {% include "footer.njk" %}
+  </body>
+  <script src="/static/app.min.js" defer></script>
 </html>

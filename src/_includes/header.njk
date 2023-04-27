@@ -1,0 +1,20 @@
+<header class="font-header bg-slate-50">
+  <section class="flex justify-between items-center">
+    <div id="logo">
+      <img src="./static/logo.png" alt="Ascendant Investigations" class="w-64 p-5"/>
+    </div>
+    {% include "social.njk" %}
+  </section>
+</header>
+<section class="sticky top-0 font-header p-5 border-b bg-slate-50">
+  <nav class="flex justify-between">
+    {% set navPages = collections.all | eleventyNavigation %}
+    <ul>
+      {%- for entry in navPages %}
+        <li{% if entry.url == page.url %} class="my-active-class"{% endif %}>
+          <a href="{{ entry.url }}">{{ entry.title }}</a>
+        </li>
+      {%- endfor %}
+    </ul>
+  </nav>
+</section>
